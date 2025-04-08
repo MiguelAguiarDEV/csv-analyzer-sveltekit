@@ -1,38 +1,126 @@
-# sv
+# CSV Analyzer con SvelteKit
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Aplicación web para análisis y visualización de archivos CSV con generación inteligente de gráficos mediante IA.
 
-## Creating a project
+## Características
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Carga y previsualización de archivos CSV
+- Detección automática de tipos de datos
+- Generación de visualizaciones (gráficos de barras, líneas y pastel)
+- Análisis automático con IA (usando Gemini)
+- Insights y conclusiones generadas por IA
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Estructura del Proyecto
 
-# create a new project in my-app
-npx sv create my-app
+```
+csv-analyzer-sveltekit/
+├── src/
+│   ├── lib/
+│   │   ├── components/           # Componentes UI
+│   │   │   ├── csv/              # Componentes para CSV
+│   │   │   │   ├── CsvPreview.svelte
+│   │   │   │   └── FileUploader.svelte
+│   │   │   ├── charts/           # Componentes de gráficos
+│   │   │   │   ├── ChartSelector.svelte
+│   │   │   │   ├── BarChart.svelte
+│   │   │   │   ├── types/
+│   │   │   │   │   ├── BarChart.svelte
+│   │   │   │   │   ├── LineChart.svelte
+│   │   │   │   │   └── PieChart.svelte
+│   │   │   │   └── config/
+│   │   │   │       ├── BarChartConfig.svelte
+│   │   │   │       └── details/
+│   │   │   │           └── ChartConfigDetails.svelte
+│   │   │   ├── ui/               # Componentes genéricos
+│   │   │   │   └── LoadingButton.svelte
+│   │   │   └── results/          # Componentes de resultados
+│   │   │       └── ResultOutput.svelte
+│   │   ├── services/             # Lógica de negocio
+│   │   │   ├── csv/              # Servicios para CSV
+│   │   │   │   └── csvService.ts
+│   │   │   ├── charts/           # Servicios para gráficos
+│   │   │   │   ├── chartService.ts
+│   │   │   │   └── chartProcessingService.ts
+│   │   │   └── ai/               # Servicios de IA
+│   │   │       └── geminaiService.ts
+│   │   ├── config/               # Configuraciones
+│   │   │   ├── app.config.ts
+│   │   │   ├── chart.config.ts
+│   │   │   └── ai.config.ts
+│   │   ├── prompts/              # Plantillas para IA
+│   │   │   └── prompts.ts
+│   │   └── types/                # Definición de tipos
+│   │       ├── ai/
+│   │       │   └── geminai.d.ts
+│   │       ├── charts.d.ts
+│   │       ├── csv.d.ts
+│   │       └── ui.d.ts
+│   ├── routes/                   # Rutas de la aplicación
+│   │   ├── +layout.svelte        # Layout principal
+│   │   ├── +page.svelte          # Dashboard principal
+│   │   ├── analyze/              # Análisis manual
+│   │   │   └── +page.svelte
+│   │   ├── autogen/              # Análisis con IA
+│   │   │   └── +page.svelte
+│   │   └── api/                  # Endpoints API
+│   │       └── geminai/
+│   │           └── +server.ts
+│   ├── app.css                   # Estilos globales
+│   ├── app.d.ts                  # Tipos globales
+│   └── app.html                  # Plantilla HTML
 ```
 
-## Developing
+## Flujos de trabajo
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### 1. Análisis Manual
+
+1. Usuario carga CSV → `FileUploader`
+2. Datos procesados por → `csvService`
+3. Previsualización en → `CsvPreview`
+4. Usuario configura gráfico en → `BarChartConfig`
+5. Visualización generada por → `BarChart`
+
+### 2. Análisis con IA
+
+1. Usuario carga CSV → `FileUploader`
+2. Datos enviados a Gemini vía → `generateAdvancedChartPrompt`
+3. IA genera configuración óptima
+4. Datos procesados por → `chartProcessingService`
+5. Visualización generada por → `ChartSelector`
+6. IA genera insights y conclusiones
+
+## Capacidades IA
+
+El sistema permite a la IA:
+
+- Seleccionar el tipo de gráfico más adecuado
+- Filtrar datos relevantes
+- Ordenar y limitar visualizaciones
+- Aplicar estilos y colores óptimos
+- Generar insights basados en patrones detectados
+
+## Tecnologías
+
+- SvelteKit
+- TypeScript
+- Chart.js
+- PapaParse (CSV parsing)
+- TailwindCSS
+- Gemini AI API
+
+## Desarrollo
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Configurar variables de entorno
+cp .env.example .env
+# Añadir tus claves API de Gemini
+
+# Desarrollo
 npm run dev
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
+# Compilación
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

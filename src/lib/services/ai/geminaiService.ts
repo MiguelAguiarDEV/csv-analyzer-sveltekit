@@ -1,5 +1,5 @@
-import { GEMINAI_API_KEY, GEMINAI_MODEL } from '$lib/config/config';
-import type { GeminaiRequest } from '$lib/types/geminai';
+import { GEMINAI_API_KEY, GEMINAI_MODEL } from '$lib/config/ai.config';
+import type { GeminaiRequest } from '$lib/types/ai/geminai';
 
 export async function generateWithGeminai({ prompt }: GeminaiRequest): Promise<string> {
 	const res = await fetch(

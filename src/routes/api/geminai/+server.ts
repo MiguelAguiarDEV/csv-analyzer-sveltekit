@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { generateWithGeminai } from '$lib/api/geminai';
-import type { GeminaiRequest, GeminaiResult } from '$lib/types/geminai';
+import { generateWithGeminai } from '$lib/services/ai/geminaiService';
+import type { GeminaiRequest, GeminaiResult } from '$lib/types/ai/geminai';
 
 export const POST: RequestHandler = async ({ request }) => {
 	try {
