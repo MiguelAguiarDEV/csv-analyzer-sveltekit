@@ -1,3 +1,126 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+/* Variables del tema */
+:root {
+	--color-bg-primary: #ffffff;
+	--color-bg-secondary: #f9fafb;
+	--color-bg-accent: #f3f4f6;
+	--color-text-primary: #111827;
+	--color-text-secondary: #4b5563;
+	--color-text-accent: #1f2937;
+	--color-border-primary: #e5e7eb;
+	--color-border-secondary: #d1d5db;
+	--color-accent-primary: #2c22ec;
+	--color-accent-secondary: #818cf8;
+	--color-chart-bg: #ffffff;
+}
+
+/* Tema oscuro */
+.theme-dark {
+	--color-bg-primary: #1f2937;
+	--color-bg-secondary: #111827;
+	--color-bg-accent: #374151;
+	--color-text-primary: #f9fafb;
+	--color-text-secondary: #d1d5db;
+	--color-text-accent: #f3f4f6;
+	--color-border-primary: #374151;
+	--color-border-secondary: #4b5563;
+	--color-accent-primary: #3241cf;
+	--color-accent-secondary: #a5b4fc;
+	--color-chart-bg: #1f2937;
+}
+
+/* Estilos base generales que respetan las variables */
+body {
+	background-color: var(--color-bg-primary);
+	color: var(--color-text-primary);
+}
+
+/* Clases utilitarias para usar en componentes */
+.bg-theme-primary {
+	background-color: var(--color-bg-primary) !important;
+}
+.bg-theme-secondary {
+	background-color: var(--color-bg-secondary) !important;
+}
+.bg-theme-accent {
+	background-color: var(--color-bg-accent) !important;
+}
+.text-theme-primary {
+	color: var(--color-text-primary) !important;
+}
+.text-theme-secondary {
+	color: var(--color-text-secondary) !important;
+}
+.text-theme-accent {
+	color: var(--color-text-accent) !important;
+}
+.border-theme-primary {
+	border-color: var(--color-border-primary) !important;
+}
+.border-theme-secondary {
+	border-color: var(--color-border-secondary) !important;
+}
+.accent-theme-primary {
+	color: var(--color-accent-primary) !important;
+}
+.accent-theme-secondary {
+	color: var(--color-accent-secondary) !important;
+}
+
+/* Sobreescritura general para componentes básicos */
+.card {
+	background-color: var(--color-bg-primary);
+	border-color: var(--color-border-primary);
+	color: var(--color-text-primary);
+}
+
+.card-header {
+	background-color: var(--color-bg-secondary);
+	border-color: var(--color-border-primary);
+}
+
+.table {
+	border-color: var(--color-border-primary);
+}
+
+.table thead {
+	background-color: var(--color-bg-secondary);
+}
+
+.table tbody tr {
+	border-color: var(--color-border-secondary);
+}
+
+/* Estilos específicos para gráficos */
+.chart-container {
+	background-color: var(--color-chart-bg);
+	border-color: var(--color-border-primary);
+}
+
+/* Estilo general de botones */
+.btn-primary {
+	background-color: var(--color-accent-primary);
+	color: white;
+}
+
+.btn-primary:hover {
+	background-color: var(--color-accent-secondary);
+}
+
+/* Adaptaciones para inputs/forms */
+input,
+select,
+textarea {
+	background-color: var(--color-bg-primary);
+	border-color: var(--color-border-secondary);
+	color: var(--color-text-primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+	border-color: var(--color-accent-primary);
+}

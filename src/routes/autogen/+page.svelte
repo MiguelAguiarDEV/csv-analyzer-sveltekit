@@ -152,37 +152,33 @@
 			console.log('Insights y conclusiones recibidas');
 		} catch (err) {
 			console.error('Error obteniendo insights o conclusiones:', err);
-			// No lanzamos error para que no bloquee la visualización
+			// No se lanza error para no bloquear la visualización
 		}
 	}
 </script>
 
-<div class="mx-auto my-8 space-y-6 rounded-xl bg-white p-6 shadow-md">
-	<header class="mb-4 border-b pb-4">
-		<h1 class="text-center text-2xl font-bold">🧠 Análisis de Datos con IA</h1>
-		<p class="mt-1 text-center text-gray-600">
+<div
+	class="bg-theme-primary border-theme-primary mx-auto my-8 space-y-6 rounded-xl border p-6 shadow-md"
+>
+	<header class="border-theme-primary mb-4 border-b pb-4">
+		<h1 class="text-theme-primary text-center text-2xl font-bold">🧠 Análisis de Datos con IA</h1>
+		<p class="text-theme-accent mt-1 text-center">
 			La IA generará automáticamente la mejor visualización para tus datos
 		</p>
 	</header>
 
-	<div class="mb-4">
-		<a href="/" class="flex items-center text-blue-600 hover:underline">
-			<span class="mr-1">←</span> Volver al Dashboard
-		</a>
-	</div>
-
-	<div class="mb-4 rounded-lg border border-gray-200 bg-gray-50 p-5">
-		<h2 class="mb-3 text-lg font-semibold">Cargar Datos CSV</h2>
-		<p class="mb-4 text-gray-600">
+	<div class="bg-theme-secondary border-theme-primary mb-4 rounded-lg border p-5">
+		<h2 class="text-theme-primary mb-3 text-lg font-semibold">Cargar Datos CSV</h2>
+		<p class="text-theme-secondary mb-4">
 			La IA analizará los datos y generará la visualización más adecuada automáticamente
 		</p>
 		<FileUploader onLoad={handleCsvLoad} />
 	</div>
 
 	{#if isLoading}
-		<div class="flex items-center justify-center rounded-lg bg-blue-50 p-6">
-			<div class="h-8 w-8 animate-spin rounded-full border-b-2 border-blue-700"></div>
-			<p class="ml-3 text-blue-700">Procesando datos...</p>
+		<div class="bg-theme-secondary flex items-center justify-center rounded-lg p-6">
+			<div class="border-theme-primary h-8 w-8 animate-spin rounded-full border-b-2"></div>
+			<p class="text-theme-primary ml-3">Procesando datos...</p>
 		</div>
 	{/if}
 
@@ -192,12 +188,12 @@
 
 	{#if chartConfig && chartLabels.length && chartData.length}
 		<div class="overflow-hidden rounded-lg border shadow-sm">
-			<div class="border-b bg-gray-50 p-4">
-				<h2 class="text-lg font-semibold">{chartConfig.title}</h2>
+			<div class="bg-theme-secondary border-b p-4">
+				<h2 class="text-theme-primary text-lg font-semibold">{chartConfig.title}</h2>
 			</div>
 
 			<!-- Gráfico -->
-			<div class="bg-white p-4">
+			<div class="bg-theme-primary p-4">
 				<SimpleBarChart
 					labels={chartLabels}
 					data={chartData}
@@ -212,19 +208,19 @@
 		</div>
 
 		<!-- Configuración -->
-		<div class="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
-			<h3 class="mb-2 font-semibold">Configuración del Gráfico</h3>
+		<div class="border-theme-secondary bg-theme-secondary mt-4 rounded-lg border p-4">
+			<h3 class="text-theme-primary mb-2 font-semibold">Configuración del Gráfico</h3>
 			<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 				<div>
-					<span class="font-medium">Columna X:</span>
+					<span class="text-theme-primary font-medium">Columna X:</span>
 					{chartConfig.x_column}
 				</div>
 				<div>
-					<span class="font-medium">Columna Y:</span>
+					<span class="text-theme-primary font-medium">Columna Y:</span>
 					{chartConfig.y_column}
 				</div>
 				<div>
-					<span class="font-medium">Ordenado por:</span>
+					<span class="text-theme-primary font-medium">Ordenado por:</span>
 					{chartConfig.sort_by === 'none'
 						? 'Sin ordenar'
 						: chartConfig.sort_by === 'value'
@@ -237,7 +233,7 @@
 						: ''}
 				</div>
 				<div>
-					<span class="font-medium">Limitado a:</span>
+					<span class="text-theme-primary font-medium">Limitado a:</span>
 					{chartConfig.limit ? `${chartConfig.limit} elementos` : 'Sin límite'}
 				</div>
 			</div>
@@ -245,8 +241,8 @@
 
 		<!-- Insights -->
 		{#if insights}
-			<div class="mt-6 rounded-lg border-l-4 border-indigo-400 bg-indigo-50 p-4">
-				<h2 class="mb-3 text-lg font-semibold text-indigo-900">Insights</h2>
+			<div class="border-accent-primary bg-theme-secondary mt-6 rounded-lg border-l-4 p-4">
+				<h2 class="text-theme-accent mb-3 text-lg font-semibold">Insights</h2>
 				<div class="prose prose-sm max-w-none">
 					{@html insights.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}
 				</div>
@@ -255,9 +251,9 @@
 
 		<!-- Conclusión -->
 		{#if conclusion}
-			<div class="mt-4 rounded-lg border-l-4 border-blue-400 bg-blue-50 p-4">
-				<h2 class="mb-2 font-semibold text-blue-900">Conclusión</h2>
-				<p>{conclusion}</p>
+			<div class="border-accent-secondary bg-theme-secondary mt-4 rounded-lg border-l-4 p-4">
+				<h2 class="text-theme-accent mb-2 font-semibold">Conclusión</h2>
+				<p class="text-theme-primary">{conclusion}</p>
 			</div>
 		{/if}
 
@@ -271,10 +267,10 @@
 		</div>
 
 		<!-- Debug -->
-		<div class="mt-4 rounded-lg border bg-gray-50 p-3">
+		<div class="border-theme-secondary bg-theme-secondary mt-4 rounded-lg border p-3">
 			<details>
-				<summary class="cursor-pointer font-medium">Debug Info</summary>
-				<div class="mt-2 overflow-auto rounded bg-gray-100 p-3 text-xs">
+				<summary class="text-theme-primary cursor-pointer font-medium">Debug Info</summary>
+				<div class="bg-theme-primary text-theme-secondary mt-2 overflow-auto rounded p-3 text-xs">
 					<p>Labels: {chartLabels.length} | Data: {chartData.length}</p>
 					<p>First Label: {chartLabels[0]} | First Value: {chartData[0]}</p>
 					<pre>{JSON.stringify(chartConfig, null, 2)}</pre>

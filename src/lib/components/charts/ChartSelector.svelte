@@ -10,7 +10,7 @@
 	export let labelX = '';
 	export let labelY = '';
 	export let config = null;
-	
+
 	// Propiedades básicas
 	$: colors = config?.configuration?.style?.colors || ['#4F46E5'];
 	$: showGrid = config?.configuration?.style?.showGridLines !== false;
@@ -25,19 +25,39 @@
 {#key key}
 	<div class="chart-container h-[400px]">
 		{#if chartType === 'bar'}
-			<BarChart {labels} {values} {labelX} {labelY} {title} 
-				colors={colors} {showGrid} {showLegend} {horizontal} />
-				
+			<BarChart
+				{labels}
+				{values}
+				{labelX}
+				{labelY}
+				{title}
+				{colors}
+				{showGrid}
+				{showLegend}
+				{horizontal}
+			/>
 		{:else if chartType === 'line'}
-			<LineChart {labels} {values} {labelX} {labelY} {title}
-				color={colors[0]} {showGrid} {showLegend} />
-				
+			<LineChart
+				{labels}
+				{values}
+				{labelX}
+				{labelY}
+				{title}
+				color={colors[0]}
+				{showGrid}
+				{showLegend}
+			/>
 		{:else if chartType === 'pie' || chartType === 'doughnut'}
-			<PieChart {labels} {values} {title} colors={colors} 
-				{showLegend} doughnut={chartType === 'doughnut'} />
-				
+			<PieChart
+				{labels}
+				{values}
+				{title}
+				{colors}
+				{showLegend}
+				doughnut={chartType === 'doughnut'}
+			/>
 		{:else}
-			<div class="p-4 text-center bg-gray-100 rounded">
+			<div class="rounded bg-gray-100 p-4 text-center">
 				<p class="text-gray-600">Tipo de gráfico no soportado: {chartType}</p>
 			</div>
 		{/if}
