@@ -1,23 +1,49 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
 
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
-/build
+# Build
+.build/
+dist/
+.vercel/
+.netlify/
+output/
 
-# OS
+# SvelteKit
+.svelte-kit/
+.env
+.env.local
+.env.*.local
+
+# Vite
+.vite/
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sw?
+
+# Sistema
 .DS_Store
 Thumbs.db
 
-# Env
-.env
-.env.*
-!.env.example
-!.env.test
+# Mac y Linux temporales
+*.log
+*.pid
+*.seed
+*.pid.lock
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# Tests / Coverage
+coverage/
+*.lcov
+
+# Misc
+*.tgz
+*.gz
+*.zip
+*.tmp
+*.bak
+*.old
