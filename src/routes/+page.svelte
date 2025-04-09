@@ -16,19 +16,21 @@
 		<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 			<a
 				href="/analyze"
-				class="bg-theme-accent border-theme-primary hover:bg-theme-secondary rounded-lg border p-4 transition"
+				class="bg-accent-primary border-theme-primary hover:bg-accent-secondary transform rounded-lg
+				border p-4 text-white transition hover:-translate-y-1"
 			>
-				<h3 class="text-theme-primary mb-2 font-medium">Análisis Manual</h3>
-				<p class="text-theme-secondary text-sm">
+				<h3 class="mb-2 font-medium">Análisis Manual</h3>
+				<p class="text-sm opacity-90">
 					Configura manualmente las visualizaciones con control total sobre los parámetros.
 				</p>
 			</a>
 			<a
 				href="/autogen"
-				class="bg-theme-accent border-theme-primary hover:bg-theme-secondary rounded-lg border p-4 transition"
+				class="bg-accent-primary border-theme-primary hover:bg-accent-primary transform rounded-lg
+				border p-4 text-white transition hover:-translate-y-1"
 			>
-				<h3 class="text-theme-primary mb-2 font-medium">Análisis con IA</h3>
-				<p class="text-theme-secondary text-sm">
+				<h3 class="mb-2 font-medium">Análisis con IA</h3>
+				<p class="text-sm opacity-90">
 					Deja que la IA analice tus datos y genere la mejor visualización automáticamente.
 				</p>
 			</a>

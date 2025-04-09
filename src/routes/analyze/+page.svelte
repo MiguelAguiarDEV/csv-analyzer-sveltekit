@@ -152,7 +152,10 @@
 					<!-- Detalles de configuración -->
 					<div class="bg-theme-secondary border-theme-primary mt-4 rounded-lg border p-3">
 						<details>
-							<summary class="text-theme-primary cursor-pointer font-medium">Detalles</summary>
+							<summary
+								class="text-theme-primary hover:text-accent-primary cursor-pointer font-medium transition"
+								>Detalles</summary
+							>
 							<div
 								class="bg-theme-primary text-theme-secondary mt-2 overflow-auto rounded p-3 text-xs"
 							>
@@ -164,7 +167,7 @@
 						</details>
 					</div>
 				{:else if error}
-					<div class="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800">
+					<div class="alert alert-error rounded-lg p-4">
 						<h3 class="mb-1 font-medium">Error</h3>
 						<p>{error}</p>
 					</div>
@@ -209,7 +212,7 @@
 					</thead>
 					<tbody class="bg-theme-primary divide-theme-secondary divide-y">
 						{#each csvData.slice(0, 5) as row}
-							<tr>
+							<tr class="hover:bg-theme-secondary transition-colors duration-150">
 								{#each headers.slice(0, 5) as header}
 									<td class="text-theme-primary px-6 py-4 text-sm whitespace-nowrap">
 										{row[header] ?? '-'}
@@ -230,7 +233,7 @@
 			{/if}
 		</div>
 	{:else if csvText}
-		<div class="p-8 text-center">
+		<div class="alert alert-info p-8 text-center">
 			<p class="text-theme-secondary">El archivo CSV no contiene datos para analizar</p>
 		</div>
 	{/if}

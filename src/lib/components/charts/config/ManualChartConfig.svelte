@@ -309,7 +309,7 @@
 	<div class="pt-3">
 		<button
 			on:click={generateGraph}
-			class="bg-accent-primary hover:bg-accent-secondary focus:ring-accent-primary flex w-full justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none"
+			class="bg-theme-accent hover:bg-accent-secondary focus:ring-accent-primary flex w-full justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm focus:ring-2 focus:ring-offset-2 focus:outline-none"
 		>
 			Generar Gráfico
 		</button>

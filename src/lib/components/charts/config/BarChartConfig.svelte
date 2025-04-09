@@ -44,7 +44,7 @@
 		<button
 			on:click={generar}
 			disabled={!xColumn || !yColumn}
-			class="mt-4 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+			class="bg-theme-accent text-primary mt-4 rounded-md px-4 py-2 font-semibold hover:bg-blue-700 disabled:opacity-50"
 		>
 			Generar gráfico
 		</button>
