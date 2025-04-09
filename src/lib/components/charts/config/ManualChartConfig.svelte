@@ -142,7 +142,6 @@
 	}
 </script>
 
-/** eslint-disable svelte/require-each-key */
 <div class="bg-theme-primary border-theme-primary space-y-4 rounded-lg border p-5">
 	<h3 class="border-theme-primary text-theme-primary mb-4 border-b pb-2 text-lg font-semibold">
 		Configuración del Gráfico
