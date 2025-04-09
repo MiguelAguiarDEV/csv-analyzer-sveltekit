@@ -142,6 +142,7 @@
 	}
 </script>
 
+/** eslint-disable svelte/require-each-key */
 <div class="bg-theme-primary border-theme-primary space-y-4 rounded-lg border p-5">
 	<h3 class="border-theme-primary text-theme-primary mb-4 border-b pb-2 text-lg font-semibold">
 		Configuración del Gráfico
@@ -149,15 +150,17 @@
 
 	<!-- Tipo de gráfico -->
 	<div class="space-y-2">
-		<label class="text-theme-primary block text-sm font-medium">Tipo de gráfico</label>
-		<select
-			bind:value={chartType}
-			class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
-		>
-			<option value="bar">Gráfico de Barras</option>
-			<option value="line">Gráfico de Líneas</option>
-			<option value="pie">Gráfico Circular</option>
-		</select>
+		<label class="text-theme-primary block text-sm font-medium"
+			>Tipo de gráfico
+			<select
+				bind:value={chartType}
+				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
+			>
+				<option value="bar">Gráfico de Barras</option>
+				<option value="line">Gráfico de Líneas</option>
+				<option value="pie">Gráfico Circular</option>
+			</select>
+		</label>
 	</div>
 
 	<!-- Selección de columnas -->
@@ -166,88 +169,96 @@
 		<div class="space-y-2">
 			<label class="text-theme-primary block text-sm font-medium">
 				{chartType === 'pie' ? 'Columna para categorías' : 'Columna para eje X'}
-			</label>
-			<select
-				bind:value={xColumn}
-				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
-			>
-				<option value="">Selecciona una columna</option>
-				{#each categoricColumns as column}
-					<option value={column}>{column}</option>
-				{/each}
-				{#if categoricColumns.length === 0}
-					{#each headers as column}
+
+				<select
+					bind:value={xColumn}
+					class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
+				>
+					<option value="">Selecciona una columna</option>
+					{#each categoricColumns as column, i (column)}
 						<option value={column}>{column}</option>
 					{/each}
-				{/if}
-			</select>
+					{#if categoricColumns.length === 0}
+						{#each headers as column, i (column)}
+							<option value={column}>{column}</option>
+						{/each}
+					{/if}
+				</select>
+			</label>
 		</div>
 
 		<!-- Columna para eje Y -->
 		<div class="space-y-2">
 			<label class="text-theme-primary block text-sm font-medium">
 				{chartType === 'pie' ? 'Columna para valores' : 'Columna para eje Y'}
-			</label>
-			<select
-				bind:value={yColumn}
-				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
-			>
-				<option value="">Selecciona una columna</option>
-				{#each numericColumns as column}
-					<option value={column}>{column}</option>
-				{/each}
-				{#if numericColumns.length === 0}
-					{#each headers as column}
+
+				<select
+					bind:value={yColumn}
+					class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
+				>
+					<option value="">Selecciona una columna</option>
+					{#each numericColumns as column, i (column)}
 						<option value={column}>{column}</option>
 					{/each}
-				{/if}
-			</select>
+					{#if numericColumns.length === 0}
+						{#each headers as column, i (column)}
+							<option value={column}>{column}</option>
+						{/each}
+					{/if}
+				</select>
+			</label>
 		</div>
 	</div>
 
 	<!-- Título -->
 	<div class="space-y-2">
-		<label class="text-theme-primary block text-sm font-medium">Título del gráfico</label>
-		<input
-			type="text"
-			bind:value={title}
-			placeholder="Ingresa un título descriptivo"
-			class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border px-3 py-2 focus:outline-none"
-		/>
+		<label class="text-theme-primary block text-sm font-medium"
+			>Título del gráfico
+			<input
+				type="text"
+				bind:value={title}
+				placeholder="Ingresa un título descriptivo"
+				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border px-3 py-2 focus:outline-none"
+			/>
+		</label>
 	</div>
 
 	<!-- Opciones específicas según tipo de gráfico -->
 	{#if chartType === 'bar'}
 		<!-- Opciones específicas para barras -->
 		<div class="space-y-2">
-			<label class="text-theme-primary block text-sm font-medium">Orientación</label>
-			<div class="flex items-center space-x-4">
-				<label class="inline-flex items-center">
-					<input type="radio" bind:group={horizontal} value={false} class="text-accent-primary" />
-					<span class="text-theme-primary ml-2">Vertical</span>
-				</label>
-				<label class="inline-flex items-center">
-					<input type="radio" bind:group={horizontal} value={true} class="text-accent-primary" />
-					<span class="text-theme-primary ml-2">Horizontal</span>
-				</label>
-			</div>
+			<label class="text-theme-primary block text-sm font-medium"
+				>Orientación
+				<div class="flex items-center space-x-4">
+					<label class="inline-flex items-center">
+						<input type="radio" bind:group={horizontal} value={false} class="text-accent-primary" />
+						<span class="text-theme-primary ml-2">Vertical</span>
+					</label>
+					<label class="inline-flex items-center">
+						<input type="radio" bind:group={horizontal} value={true} class="text-accent-primary" />
+						<span class="text-theme-primary ml-2">Horizontal</span>
+					</label>
+				</div>
+			</label>
 		</div>
 	{/if}
 
 	{#if chartType === 'line'}
 		<!-- Opciones específicas para líneas -->
 		<div class="space-y-2">
-			<label class="text-theme-primary block text-sm font-medium">Opciones de línea</label>
-			<div class="flex items-center space-x-4">
-				<label class="inline-flex items-center">
-					<input type="checkbox" class="text-accent-primary" />
-					<span class="text-theme-primary ml-2">Mostrar puntos</span>
-				</label>
-				<label class="inline-flex items-center">
-					<input type="checkbox" class="text-accent-primary" />
-					<span class="text-theme-primary ml-2">Rellenar área</span>
-				</label>
-			</div>
+			<label class="text-theme-primary block text-sm font-medium"
+				>Opciones de línea
+				<div class="flex items-center space-x-4">
+					<label class="inline-flex items-center">
+						<input type="checkbox" class="text-accent-primary" />
+						<span class="text-theme-primary ml-2">Mostrar puntos</span>
+					</label>
+					<label class="inline-flex items-center">
+						<input type="checkbox" class="text-accent-primary" />
+						<span class="text-theme-primary ml-2">Rellenar área</span>
+					</label>
+				</div>
+			</label>
 		</div>
 	{/if}
 
@@ -255,54 +266,60 @@
 	<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
 		<!-- Ordenamiento -->
 		<div class="space-y-2">
-			<label class="text-theme-primary block text-sm font-medium">Ordenar por</label>
-			<div class="flex space-x-2">
-				<select
-					bind:value={sortBy}
-					class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-3/4 rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
-				>
-					<option value="none">Sin ordenar</option>
-					<option value="value">Valor</option>
-					<option value="label">Etiqueta</option>
-				</select>
-
-				{#if sortBy !== 'none'}
+			<label class="text-theme-primary block text-sm font-medium"
+				>Ordenar por
+				<div class="flex space-x-2">
 					<select
-						bind:value={sortAscending}
-						class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-1/4 rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
+						bind:value={sortBy}
+						class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-3/4 rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
 					>
-						<option value={false}>↓</option>
-						<option value={true}>↑</option>
+						<option value="none">Sin ordenar</option>
+						<option value="value">Valor</option>
+						<option value="label">Etiqueta</option>
 					</select>
-				{/if}
-			</div>
+
+					{#if sortBy !== 'none'}
+						<select
+							bind:value={sortAscending}
+							class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-1/4 rounded-md border py-2 pr-10 pl-3 text-base focus:outline-none"
+						>
+							<option value={false}>↓</option>
+							<option value={true}>↑</option>
+						</select>
+					{/if}
+				</div>
+			</label>
 		</div>
 
 		<!-- Limitación -->
 		<div class="space-y-2">
-			<label class="text-theme-primary block text-sm font-medium">Limitar a</label>
-			<input
-				type="number"
-				bind:value={limit}
-				min="0"
-				placeholder="0 = sin límite"
-				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border px-3 py-2 focus:outline-none"
-			/>
+			<label class="text-theme-primary block text-sm font-medium"
+				>Limitar a
+				<input
+					type="number"
+					bind:value={limit}
+					min="0"
+					placeholder="0 = sin límite"
+					class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block w-full rounded-md border px-3 py-2 focus:outline-none"
+				/>
+			</label>
 		</div>
 	</div>
 
 	<!-- Color -->
 	<div class="space-y-2">
-		<label class="text-theme-primary block text-sm font-medium">Color</label>
-		<div class="flex space-x-2">
-			<input type="color" bind:value={colorScheme} class="h-10 w-10 cursor-pointer rounded" />
-			<input
-				type="text"
-				bind:value={colorScheme}
-				placeholder="#RRGGBB"
-				class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block flex-1 rounded-md border px-3 py-2 focus:outline-none"
-			/>
-		</div>
+		<label class="text-theme-primary block text-sm font-medium"
+			>Color
+			<div class="flex space-x-2">
+				<input type="color" bind:value={colorScheme} class="h-10 w-10 cursor-pointer rounded" />
+				<input
+					type="text"
+					bind:value={colorScheme}
+					placeholder="#RRGGBB"
+					class="border-theme-primary focus:ring-accent-primary focus:border-accent-primary mt-1 block flex-1 rounded-md border px-3 py-2 focus:outline-none"
+				/>
+			</div>
+		</label>
 	</div>
 
 	<!-- Botón de generación -->
