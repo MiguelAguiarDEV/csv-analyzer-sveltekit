@@ -157,7 +157,6 @@
 	}
 </script>
 
-/** eslint-disable svelte/no-at-html-tags */
 <div
 	class="bg-theme-primary border-theme-primary mx-auto my-8 space-y-6 rounded-xl border p-6 shadow-md"
 >
